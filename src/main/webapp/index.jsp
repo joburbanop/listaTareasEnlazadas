@@ -25,7 +25,7 @@
                     <div class="mb-md-5 mt-md-4 py-0">
                       <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                       <p class="text-white-50 mb-3">Por favor ingrese usuario y contraseña</p>
-                      <form>
+                      <form action="SvRegistrar" method="POST">
                         <div class="form-outline form-white mb-3">
                           <input type="email" id="typeEmailX" class="form-control form-control-lg" />
                           <label class="form-label" for="typeEmailX">Email</label>
@@ -36,14 +36,14 @@
                           <label class="form-label" for="typePasswordX">Password</label>
                         </div>
 
-                        <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot your password?</a></p>
+                        <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">olvido su contraseña?</a></p>
                         <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                       </form>
 
                     </div>
 
                     <div>
-                      <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Register</a></p>
+                      <p class="mb-0">no tiene cuenta? <a href="#!" class="text-white-50 fw-bold">Registerte</a></p>
                     </div>
                   </div>
                 </div>
