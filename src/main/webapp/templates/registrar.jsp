@@ -8,26 +8,29 @@
         <link rel="stylesheet"  href="../static/css/estylosRegistro.css"><link>
         <title>JSP Page</title>
     </head>
-    <body>
+    <body> 
         
         
         <section>
             
             <form action="SvCrearUsuarios" method="GET">
             <!-- Form-->
-            <div class="form">
+            <div class="form" style="border-radius: 1rem">
               <div class="form-toggle"></div>
               
-              <div class="form-panel one">
+                <div class="form-panel one" >
                 <div class="form-header">
                   <h1>Nuevo usuario</h1>
                 </div>
+                          
                 <div class="form-content">
                   
                       
                       <div class="form-group">
-                      <label for="username">Cedula</label>
-                      <input id="username" type="text" name="cedula" required="required">
+                        
+                              <label for="username">Cedula</label>
+                              <input id="username" type="text" name="cedula" required="required">
+                          
                     </div>
                       
                     <div class="form-group">
@@ -40,7 +43,7 @@
                     </div>
                     
                     <div class="form-group">
-                      <button type="submit">Iniciar seccion</button>
+                      <button type="submit">Iniciar sesion</button>
                     </div>
                 
                 </div>
