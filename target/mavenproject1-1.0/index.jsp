@@ -25,6 +25,7 @@
                     <div class="mb-md-5 mt-md-4 py-0">
                       <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                       <p class="text-white-50 mb-3">Por favor ingrese usuario y contraseña</p>
+                      
                       <form action="SvRegistrar" method="POST">
                         <div class="form-outline form-white mb-3">
                           <input type="email" id="typeEmailX" class="form-control form-control-lg" />
@@ -43,7 +44,7 @@
                     </div>
 
                     <div>
-                      <p class="mb-0">no tiene cuenta? <a href="#!" class="text-white-50 fw-bold">Registerte</a></p>
+                      <p class="mb-0">no tiene cuenta? <a href="templates/registrar.jsp" class="text-white-50 fw-bold">Registerte</a></p>
                     </div>
                   </div>
                 </div>
