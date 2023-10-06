@@ -23,28 +23,28 @@
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                   <div class="card-body p-5 pt-2 text-center" >
                     <div class="mb-md-5 mt-md-4 py-0">
-                      <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                      <h2 class="fw-bold mb-2 text-uppercase">Bienvenidos</h2>
                       <p class="text-white-50 mb-3">Por favor ingrese usuario y contraseña</p>
                       
                       <form action="SvRegistrar" method="POST">
                         <div class="form-outline form-white mb-3">
-                          <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                          <label class="form-label" for="typeEmailX">Email</label>
+                          <input type="name" id="typeEmailX" class="form-control form-control-lg" />
+                          <label class="form-label" for="text">Nombre de Usuario</label>
                         </div>
 
                         <div class="form-outline form-white mb-2">
                           <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                          <label class="form-label" for="typePasswordX">Password</label>
+                          <label class="form-label" for="typePasswordX">Contraseña</label>
                         </div>
 
-                        <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">olvido su contraseña?</a></p>
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                        <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">¿Olvidó su contraseña?</a></p>
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>
                       </form>
 
                     </div>
 
                     <div>
-                      <p class="mb-0">no tiene cuenta? <a href="templates/registrar.jsp" class="text-white-50 fw-bold">Registerte</a></p>
+                      <p class="mb-0">¿No tiene cuenta? <a href="templates/registrar.jsp" class="text-white-50 fw-bold">Registrar</a></p>
                     </div>
                   </div>
                 </div>
