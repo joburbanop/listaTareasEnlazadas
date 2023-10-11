@@ -54,7 +54,24 @@ public class SvRegistrar extends HttpServlet {
         
                 
                 ControlUsuario.guardarUsuarios(UsuarioIngresar , context);
-                
+                  
+                if (ControlUsuario.cerificarUsuarioRegistrado(nombre, contrasenia, context)) {
+
+            String errorMessage = "El usuario ya está registrado.";
+
+            String script = "<script>alert('" + errorMessage + "'); window.location.href = 'index.jsp';</script>";
+            response.setContentType("text/html");
+            response.getWriter().write(script);
+        } else {
+
+            Usurios nuevoUsuario = new Usurios(cedula, nombre, contrasenia);
+            UsuarioIngresar.add(nuevoUsuario);
+            ControlUsuario.guardarUsuarios(UsuarioIngresar, context);
+            String nombreUsuario = nuevoUsuario.getNombre_usuario();
+            String script = "<script>alert('Se ha registrado exitosamente.'); window.location.href = 'index.jsp?nombreUsuario=" + nombreUsuario + "';</script>";
+            response.setContentType("text/html");
+            response.getWriter().write(script);
+        }
                 // Redirigir a la página index.jsp
                 request.getRequestDispatcher("index.jsp").forward(request, response);
     }
