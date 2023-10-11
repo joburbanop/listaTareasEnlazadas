@@ -13,7 +13,7 @@
         
         <section>
             
-            <form action="SvCrearUsuarios" method="GET">
+            <form action="../SvRegistrar" method="POST"  >
             <!-- Form-->
             <div class="form" style="border-radius: 1rem">
               <div class="form-toggle"></div>
@@ -43,7 +43,7 @@
                     </div>
                     
                     <div class="form-group">
-                      <button type="submit">Iniciar sesion</button>
+                      <button type="submit">Registrar</button>
                     </div>
                 
                 </div>

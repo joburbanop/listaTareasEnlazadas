@@ -8,7 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
+import static jdk.jpackage.internal.Arguments.CLIOptions.context;
 
 
 
@@ -22,13 +25,18 @@ public class ControlUsuario {
 
 
 
-    public static void guardarUsuarios( ArrayList<Usurios> UsuarioIngresar) throws IOException{
-        File archivoGuardar = new File("./data/usuarios.txt");
+    public static void guardarUsuarios( ArrayList<Usurios> UsuarioIngresar, ServletContext context) throws IOException{
+        // Obtener la ubicación del archivo "usuarios.txt" en el directorio de recursos
+        String relativePath = "/data/usuarios.txt";
+        String absPath = context.getRealPath(relativePath);
+        File archivoGuardar = new File(absPath);
+        
+ 
         PrintWriter escribir = new PrintWriter(new FileWriter(archivoGuardar, true));
 
         //verficamos si existe contenido dentro del arichvo p
         if (archivoGuardar.exists() && archivoGuardar.length()<=0) {
-            escribir.println("====usuarios registrados");
+            escribir.println("====usuarios registrados========");
         } else {
             for (Usurios usurios : UsuarioIngresar) {
                 escribir.println("nombre: " + usurios.getNombre_usuario());
@@ -36,14 +44,18 @@ public class ControlUsuario {
                 escribir.println("contraseña: "+ usurios.getContrasenia());
             }
         }
-   
+        escribir.close();
     }
 
-    public static void cargarArchivo(){
-        File archivoAcargar = new File("./data/usuarios.txt");
+    public static void cargarArchivo(ServletContext context){
+       
+        String relativePath = "/data/usuarios.txt";
+        String absPath = context.getRealPath(relativePath);
+        File archivoCargar = new File(absPath);
+        
 
-        if (archivoAcargar.length()!=0) {
-            try (BufferedReader leyendo = new BufferedReader(new FileReader(archivoAcargar)) ) {
+        if (archivoCargar.length()!=0) {
+            try (BufferedReader leyendo = new BufferedReader(new FileReader(archivoCargar)) ) {
                 String nomreUsurio= null;
                 String cedula=null;
                 String contrasenia=null;
@@ -76,15 +88,16 @@ public class ControlUsuario {
     }
 
 
-    public static boolean verificarUsuarioCreado(String nombre, String contrasenia) throws IOException {
-
-        cargarArchivo();
+    public static String verificarUsuarioCreado(String nombre, String contrasenia,  ServletContext context) throws IOException {
+       
+        cargarArchivo(context);
         
        for (Usurios IUsuarios : usuriosNuevo) {
             if (IUsuarios.getNombre_usuario().equals(nombre) && IUsuarios.getContrasenia().equals(contrasenia)) {
-                return true;
+                System.out.println("Se verifico aqui" + IUsuarios.getNombre_usuario());
+                return IUsuarios.getNombre_usuario();
             }
        }
-       return false;
+       return null;
 }
 }

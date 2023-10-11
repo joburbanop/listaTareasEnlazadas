@@ -1,4 +1,5 @@
 
+<%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,15 @@
             
             <%@include file="templates/header.jsp"%>
         </section>
-        
+            <%
+                String relativePath = getServletContext().getRealPath("/data");
+               String archivoGuardar = "usuarios.txt";
+               
+               File data = new File(relativePath);
+               File archivo = new File(data + "/" + archivoGuardar);   
+               data.mkdir();
+               archivo.createNewFile();
+            %>
         
         <section class="vh-100 gradient-custom">
           <div class="container py-5 h-100">
@@ -26,19 +35,20 @@
                       <h2 class="fw-bold mb-2 text-uppercase">Bienvenidos</h2>
                       <p class="text-white-50 mb-3">Por favor ingrese usuario y contraseña</p>
                       
-                      <form action="SvRegistrar" method="POST">
+                      <form action="SvVerificar" method="POST">
                         <div class="form-outline form-white mb-3">
-                          <input type="name" id="typeEmailX" class="form-control form-control-lg" />
+                          <input type="text" name = "usuario" id="typeEmailX" class="form-control form-control-lg"  required/>
                           <label class="form-label" for="text">Nombre de Usuario</label>
                         </div>
 
                         <div class="form-outline form-white mb-2">
-                          <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                          <input type="password" name="contrasenia" id="typePasswordX" class="form-control form-control-lg" required />
                           <label class="form-label" for="typePasswordX">Contraseña</label>
                         </div>
 
                         <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">¿Olvidó su contraseña?</a></p>
                         <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>
+                        
                       </form>
 
                     </div>
