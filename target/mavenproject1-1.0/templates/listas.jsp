@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <div class="navbar-text text-center" style="color: black;">
-                        Bienvenido, <%= nombre%>!
+                        Hola, <%= nombre%>!
                     </div>
                     <a href="../index.jsp" class="btn btn-warning" style="background-color: lightblue; border-color: lightblue; color: black;">Cerrar Sesión</a>
                 </div>

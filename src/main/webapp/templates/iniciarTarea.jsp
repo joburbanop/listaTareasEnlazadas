@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <%
            ServletContext context = request.getServletContext();            
            String nombre = request.getParameter("nombre_usuario");          
@@ -13,9 +14,62 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet"  href="static/css/inicioTareaStyle.css"><link>
         <title>JSP Page</title>
+        <style>
+            body{
+                    /* fallback for old browsers */
+            background: #6a11cb;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+            
+           color: white;
+            }
+
+</style>
     </head>
     <body>
-        <div class="create-new-object-content-component"><div class="title-wrapper"><div id="new-object-title" role="heading" aria-level="2" class="new-object-title">Agregar espacio de trabajo nuevo</div></div><div class="object-type-top-options-wrapper"><div class="new-workspace-icon-component"><div class="workspace-icon-container workspace-size-xl"><button data-testid="menu-button" type="button" class="wrapper_9d0448efc7 workspace-icon-menu-button size32_1f470e0616" aria-haspopup="true" aria-expanded="false" aria-label="Editar el ícono de tu espacio de trabajo" aria-disabled="false"><div class="workspace-icon-shape-container" style="background-color: rgb(255, 21, 138);"><div class="workspace-icon icon" role="img" aria-label="Espacio de trabajo"><span class="letter">E</span></div><div class="change-workspace-icon-button-component-wrapper" role="button"><div class="change-workspace-icon-button-component"><div class="change-workspace-icon-button"><i class="icon icon-v2-edit"></i><div>Editar</div></div></div></div></div></button></div></div></div><div class="new-object-name-input-wrapper"><label for="new-object-name" role="heading" aria-level="3" class="new-object-name-input-label">Nombre del espacio de trabajo</label><span class=""><input id="new-object-name" class="new-object-name-input" placeholder="Elegir un nombre para tu espacio de trabajo" autocomplete="off" value="Espacio de trabajo nuevo"><span></span></span></div><div class="object-type-options-wrapper"><label id="options-label" role="heading" aria-level="2" class="new-options-label">Privacidad</label><div role="radiogroup"><div class="new-workspace-options-wrapper"><div class="object-kind-options-component new-workspace-options-component" aria-labelledby="options-label"><div class="kind-options"><div class="kind-option 1 public"><div class="radio-button-container" aria-describedby="selected-kind-description"><div class="radio-button-component"><label data-testid="radio-button" class="radioButton_126ecccfb2"><span class="inputContainer_3917fa4854"><input class="input_053fe796c0" type="radio" name="object-kind-options" value=""><span data-testid="radio-button-control" class="control_a465eaecba labelAnimation_3c3b0251e5"></span></span><div data-testid="clickable" tabindex="0" role="button" class="clickable_c0d0da427c disableTextSelection_b39215dd1d"><div class="object-kind-button-wrapper"><span class="kind-title">Abierto</span></div></div></label></div></div></div><div class="kind-option 2 closed disabled"><div class="radio-button-container" aria-describedby="selected-kind-description"><div class="radio-button-component"><label data-testid="radio-button" class="radioButton_126ecccfb2 disabled_19319b25a4 disabled"><span class="inputContainer_3917fa4854"><input class="input_053fe796c0" type="radio" name="object-kind-options" disabled="" value=""><span data-testid="radio-button-control" class="control_a465eaecba labelAnimation_3c3b0251e5"></span></span><div data-testid="clickable" tabindex="0" role="button" class="clickable_c0d0da427c disableTextSelection_b39215dd1d"><div class="object-kind-button-wrapper"><div class="object-kind-icon-wrapper"><icon-dapulse-private aria-hidden="true" size="20" classname="icon_5270a679af" data-testid="icon"></icon-dapulse-private></div><span class="kind-title">Cerrado</span></div></div></label></div></div></div></div><div id="selected-kind-description" class="selected-kind-description">Todos los miembros del equipo en la cuenta pueden unirse</div></div></div></div></div><div class="new-button-container"><span class="button-with-tooltip-wrapper"><button type="button" class="cancel-button button_3d7c3b0393 sizeMedium_ea58618b5d kindTertiary_7584f88a1f colorPrimary_bc7612a190 hasStyleSize_156688255b marginRight_99797d4a20" data-testid="button" aria-disabled="false" aria-busy="false" aria-pressed="false" style="--element-width: 95.09375px; --element-height: 40px;">Cancelar</button></span><span class="button-with-tooltip-wrapper"><button type="button" class="new-button button_3d7c3b0393 sizeMedium_ea58618b5d kindPrimary_588f50b653 colorPrimary_bc7612a190 hasStyleSize_156688255b" data-testid="button" aria-disabled="false" aria-busy="false" aria-pressed="false" style="--element-width: 225.375px; --element-height: 40px;">Agregar espacio de trabajo</button></span></div></div>
+        <section class="gradient-custom">
+              
+            <h1>Bienvenido, <%= nombre%>!</h1>
+                 
+            <div class="container">
+            <h1>Agregar nuevo espacio de trabajo</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nombre">Nombre del espacio de trabajo:</label>
+                        <input type="text" class="form-control" id="nombre">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                             <label for="nombre">Privacidad:</label>
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Abierto
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> Cerrado
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary mt-3">Crear</button>
+            </div>
+        </div>
+        
+            
+        </section>
+        
+           
+  
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     </body>
 </html>
