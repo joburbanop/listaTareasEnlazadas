@@ -46,7 +46,7 @@ public class SvVerificar extends HttpServlet {
                 
                    if(nombreUsuario!=null){
                        System.out.println("aqui estoy ");
-                       String script = "<script>alert('Se verificó correctamente.'); window.location.href = 'templates/listas.jsp?nombre_usuario=" + nombreUsuario + "';</script>";
+                       String script = "<script>alert('Se verificó correctamente.'); window.location.href = 'templates/iniciarTarea.jsp?nombre_usuario=" + nombreUsuario + "';</script>";
                        response.setContentType("text/html");
                        response.getWriter().write(script);
                    }else{

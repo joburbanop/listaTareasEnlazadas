@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,7 +16,7 @@
             
             <form action="../SvRegistrar" method="POST"  >
             <!-- Form-->
-            <div class="form" style="border-radius: 1rem">
+            <div class="form" style="background-color: #212529;">
               <div class="form-toggle"></div>
               
                 <div class="form-panel one" >

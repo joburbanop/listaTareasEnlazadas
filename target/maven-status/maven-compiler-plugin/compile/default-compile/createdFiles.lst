@@ -1,3 +1,6 @@
 com\umariana\mavenproject1\resources\JavaEE8Resource.class
+com\umariana\mavenproject1\Usurios.class
+servlet\SvVerificar.class
+com\umariana\mavenproject1\ControlUsuario.class
 com\umariana\mavenproject1\JAXRSConfiguration.class
 servlet\SvRegistrar.class

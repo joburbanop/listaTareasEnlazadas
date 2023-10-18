@@ -1,0 +1,5 @@
+====usuarios registrados========
+nombre: admin
+cedula: 10863638979
+contraseña: admin
+
