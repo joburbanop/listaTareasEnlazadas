@@ -1,8 +1,5 @@
 ====usuarios registrados========
 nombre: admin
 cedula: 10863638979
-contraseña: admin
+contraseña: 123
 
-nombre: Daniel
-cedula: 1085346286
-contraseÃ±a: dan

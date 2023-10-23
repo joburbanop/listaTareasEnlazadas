@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package servlet;
 
 import com.umariana.mavenproject1.ControlUsuario;
@@ -44,36 +41,32 @@ public class SvRegistrar extends HttpServlet {
             throws ServletException, IOException {
                 
                 String cedula = request.getParameter("cedula");
-                String nombre= request.getParameter("nombre_usuario");
+                String nombre= request.getParameter("usuario");
                 String contrasenia = request.getParameter("contrasenia");
                 ServletContext context= getServletContext();
                 Usurios usuario = new Usurios(cedula, nombre, contrasenia);
-                UsuarioIngresar.add(usuario);
-                
+ 
                 System.out.println("si se pudo "+nombre + cedula );
-        
+  
+                String nombreUsuario = ControlUsuario.verificarUsuarioCreado(nombre, contrasenia, context);
+                System.out.println("holi: "+nombreUsuario);
+                if(nombreUsuario==null){
+                    UsuarioIngresar.add(usuario);
+                    ControlUsuario.guardarUsuarios(UsuarioIngresar , context);
+                    String script = "<script>alert('Se ha registrado exitosamente.'); window.location.href = 'index.jsp?nombreUsuario=" + nombreUsuario + "';</script>";
+                    response.setContentType("text/html");
+                    response.getWriter().write(script);
+                }else{
+                    //String nombreUsuario = nuevoUsuario.getNombre_usuario();
+                    String script = "<script>alert('el usuario ya se ha registrado previamente.'); window.location.href = 'index.jsp?nombreUsuario=" + nombreUsuario + "';</script>";
+                    response.setContentType("text/html");
+                    response.getWriter().write(script);
+                }
                 
-                ControlUsuario.guardarUsuarios(UsuarioIngresar , context);
-                  
-                if (ControlUsuario.cerificarUsuarioRegistrado(nombre, contrasenia, context)) {
+               
+                
+                
 
-            String errorMessage = "El usuario ya está registrado.";
-
-            String script = "<script>alert('" + errorMessage + "'); window.location.href = 'index.jsp';</script>";
-            response.setContentType("text/html");
-            response.getWriter().write(script);
-        } else {
-
-            Usurios nuevoUsuario = new Usurios(cedula, nombre, contrasenia);
-            UsuarioIngresar.add(nuevoUsuario);
-            ControlUsuario.guardarUsuarios(UsuarioIngresar, context);
-            String nombreUsuario = nuevoUsuario.getNombre_usuario();
-            String script = "<script>alert('Se ha registrado exitosamente.'); window.location.href = 'index.jsp?nombreUsuario=" + nombreUsuario + "';</script>";
-            response.setContentType("text/html");
-            response.getWriter().write(script);
-        }
-                // Redirigir a la página index.jsp
-                request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     

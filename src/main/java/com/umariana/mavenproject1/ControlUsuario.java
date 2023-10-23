@@ -101,20 +101,7 @@ public class ControlUsuario {
        return null;
 }
     
-        public static boolean cerificarUsuarioRegistrado(String nombre, String cedula, ServletContext context) throws IOException {
-        
-        cargarArchivo(context);
-    
-        for (Usurios usuario : usuriosNuevo) {
-        
-            if (usuario.getNombre_usuario().equals(nombre)  && usuario.getCedula().equals(cedula)) {
-            
-                return true; // El usuario existe en la lista
-            
-            }
-        }
-        return true;
-    }
+       
         
 }
 

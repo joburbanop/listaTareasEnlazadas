@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package servlet;
 
 import com.umariana.mavenproject1.ControlUsuario;
@@ -14,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +23,7 @@ public class SvVerificar extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
 
@@ -40,15 +38,25 @@ public class SvVerificar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 ServletContext context = getServletContext();
-                String nombre= request.getParameter("usuario");
-                String contrasenia = request.getParameter("contrasenia");
+                String nombre= request.getParameter("email");
+                String contrasenia = request.getParameter("contra");
+                System.out.println("nombre: "+ nombre);
+                System.out.println("contraseña " + nombre);
                 String nombreUsuario = ControlUsuario.verificarUsuarioCreado(nombre, contrasenia, context);
                 
                    if(nombreUsuario!=null){
+                       HttpSession session = request.getSession();
+                       
+                       session.setAttribute("nombre_usuario", nombreUsuario);
+                        // Otras atributos del usuario
+                       session.setAttribute("cedula_usuario", contrasenia);
+                        // Agrega otros atributos que desees mantener
+
                        System.out.println("aqui estoy ");
-                       String script = "<script>alert('Se verificó correctamente.'); window.location.href = 'templates/iniciarTarea.jsp?nombre_usuario=" + nombreUsuario + "';</script>";
-                       response.setContentType("text/html");
-                       response.getWriter().write(script);
+                       request.setAttribute("nombre_usuario", nombreUsuario);
+                    
+                       request.getRequestDispatcher("/templates/listas.jsp").forward(request, response);
+
                    }else{
                        System.out.println("usuario incorrecto");
                        String script = "<script>alert('Usuario incorrecto'); window.location.href = 'index.jsp?nombre_usuario=" + nombreUsuario + "';</script>";

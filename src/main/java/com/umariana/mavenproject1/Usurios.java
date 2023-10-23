@@ -1,6 +1,9 @@
 
 package com.umariana.mavenproject1;
 
+import java.util.ArrayList;
+
+
 
 
 public class Usurios {
@@ -12,7 +15,8 @@ public class Usurios {
      private String cedula;
      private String nombre_usuario;
      private String contrasenia;
- 
+    private ArrayList<Tarea> tareas;
+
  
      
      /*----------------------------------------------------------
@@ -23,9 +27,16 @@ public class Usurios {
         this.cedula = cedula;
         this.nombre_usuario = nombre_usuario;
         this.contrasenia = contrasenia;
+        this.tareas = new ArrayList<>();
     }
 
+    public void agregarTarea(Tarea tarea) {
+        tareas.add(tarea);
+    }
 
+    public ArrayList<Tarea> obtenerTareas() {
+        return tareas;
+    }
     public String getCedula() {
          return cedula;
      }
