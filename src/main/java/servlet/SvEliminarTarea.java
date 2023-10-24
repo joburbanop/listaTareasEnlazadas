@@ -39,13 +39,14 @@ public class SvEliminarTarea extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
-       
-        
+
+        System.out.println("AQUI SI ESTAMOS");
+        HttpSession session = request.getSession(false);
         String nombreUsuario = (String) session.getAttribute("nombre_usuario");
-        
+
         String titulo = request.getParameter("titulo");
-        System.out.println("estamos eliminando" + titulo);
-        ControlTareas.eliminarArchivo(context, titulo);
+        System.out.println("estamos eliminando " + nombreUsuario);
+        //ControlTareas.eliminarArchivo(context, nombreUsuario);
         ControlTareas.eliminarTareaPorTitulo(titulo, context, titulo);
         
         //request.getRequestDispatcher("templates/listas.jsp").forward(request, response);

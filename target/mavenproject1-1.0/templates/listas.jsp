@@ -157,10 +157,14 @@
         
         if (confirmar) {
             // Realizar la eliminación de la tarea aquí (puede usar AJAX para comunicarse con el servidor)
-                    console.log("holaxd");
+                   
                     $.ajax({  
                         
+<<<<<<< HEAD
                         url: 'SvEliminarTarea?titulo='+titulo,
+=======
+                        url: 'SvEliminarTarea?titulo=' + titulo,
+>>>>>>> 72ac9d1e3c8f6844f4db5121dc6688441f229ae6
                         method: 'POST',
                         
                     success: function(){

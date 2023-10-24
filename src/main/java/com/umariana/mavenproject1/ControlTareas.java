@@ -22,7 +22,7 @@ public class ControlTareas {
     *Atributos
     *--------------------------------------------*/
     public static Tarea cabeza; 
-    
+    private static List<Tarea> tareasUsuario = new ArrayList<>();
     
     public ControlTareas() {
         cabeza = null;
@@ -59,16 +59,24 @@ public class ControlTareas {
         String absPath = context.getRealPath(relativePath);
         File archivoCargar = new File(absPath);
         
-        try {
-            BufferedWriter escribir = new BufferedWriter(new FileWriter(archivoCargar));
-            escribir.write("");
+        
             
-        } catch (Exception e) {
+            try (BufferedWriter escribir = new BufferedWriter(new FileWriter(archivoCargar))) {
+                System.out.println("aqui");
+                escribir.write("");
+                escribir.close();
+            }
+         catch (IOException e) {
+             
+            e.printStackTrace();
         }
+    
     }
     
-    
     public static void eliminarTareaPorTitulo(String titulo, ServletContext context, String nombreUsuario) {
+       List<Tarea> cargar =cargarTareasDesdeArchivo(context, nombreUsuario);
+        cargar.remove(titulo);
+        eliminarArchivo(context,nombreUsuario);
         cargarTareasDesdeArchivo(context, nombreUsuario);
         
         if (cabeza == null) {
@@ -132,7 +140,7 @@ public class ControlTareas {
      * @param nombreArchivo 
      */
     public static List<Tarea> cargarTareasDesdeArchivo(ServletContext context, String nombreUsuario) {
-        List<Tarea> tareasUsuario = new ArrayList<>();
+        
         tareasUsuario.clear();
         String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
         String absPath = context.getRealPath(relativePath);
