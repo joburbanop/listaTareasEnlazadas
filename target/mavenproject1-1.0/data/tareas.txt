@@ -1,5 +1,0 @@
-ID: 1
-Título: karol
-Descripción: 45465
-Fecha de vencimiento: 2023-10-27
------------------------

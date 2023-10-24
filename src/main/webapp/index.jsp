@@ -42,7 +42,7 @@
 
                     <!--Formulario para iniciar sesion redirije a SvVerificar-->
                     <div class="form-container sign-in">
-                        <form action="SvVerificar" method="post">
+                        <form action="SvVerificar" method="POST">
                             <h1>Ingresa</h1>
                             <input type="text" name="email" placeholder="Usuario">
                             <input type="password" name="contra" placeholder="Contraseña">

@@ -28,6 +28,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+ 
 </head>
 <body>
 <section class="vh-100" style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
@@ -66,7 +67,8 @@
                     <h4 class="text-center" style="color: black;">Agrega tareas</h4>
                     
                     <%-- formulario para agregar tareas --%>
-                    <form action="SvCrearTarea" method="POST">
+                    <form action="/mavenproject1/SvCrearTarea" method="post">
+
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="nombre">Id</label>
                             <input type="text" name="id" class="form-control">
@@ -85,7 +87,7 @@
                             <label class="input-group-text" for="fecha">Fecha de vencimiento</label>
                             <input type="date" name="fecha" class="form-control">
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Agregar tarea" style="background-color: lightblue; border-color: lightblue;"></input>
+                        <input type="submit" value="Agregar tarea" ></input>
                     </form>
                     
                     
@@ -95,40 +97,71 @@
             <%-- tabla para visualizar las tareas agregadas --%>
             <div class="col-md-8">
                 <div>
-                    <% 
-                    // Obtén las tareas asociadas al usuario activo (supongamos que tienes una lista de tareas en la sesión)
-                    List<Tarea> tareas = (List<Tarea>) session.getAttribute("tareas");
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Titulo</th>
+                                <th>Descripción</th>
+                                <th>Fecha de Vencimiento</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            // Obtén las tareas asociadas al usuario activo (supongamos que tienes una lista de tareas en la sesión)
+                            List<Tarea> tareas = (List<Tarea>) session.getAttribute("tareas");
 
-                    if (tareas != null && !tareas.isEmpty()) {
-                        int contador = 1;
-                        for (Tarea tarea : tareas) {
-                %>
-                <tr>
-                    <td><%= contador %></td>
-                    <td><%= tarea.getTitulo() %></td>
-                    <td><%= tarea.getDescripcion() %></td>
-                    <td><%= tarea.getFechaVencimiento() %></td>
-                    <td>
-                        <!-- Aquí puedes agregar botones o enlaces para realizar acciones con la tarea -->
-                    </td>
-                </tr>
-                <%
-                            contador++;
-                        }
-                    } else {
-                %>
-                <tr>
-                    <td colspan="5">No tienes tareas disponibles.</td>
-                </tr>
-                <%
-                    }
-                %>
+                            if (tareas != null && !tareas.isEmpty()) {
+                                int contador = 1;
+                                for (Tarea tarea : tareas) {
+                            %>
+                            <tr>
+                                <td><%= contador %></td>
+                                <td><%= tarea.getTitulo() %></td>
+                                <td><%= tarea.getDescripcion() %></td>
+                                <td><%= tarea.getFechaVencimiento() %></td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="editarTarea('<%= tarea.getId() %>')">Editar</button>
+                                    <button class="btn btn-danger" onclick="eliminarTarea('<%= tarea.getId() %>')">Eliminar</button>
+                                </td>
+                            </tr>
+                            <%
+                                        contador++;
+                                    }
+                                } else {
+                            %>
+                            <tr>
+                                <td colspan="5">No tienes tareas disponibles.</td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
                 </div>
-            </div>  
+            </div>
+
         </div>
     </div>
 </section>
 <%@include file="/templates/footer.jsp" %>
+<script>
+    function editarTarea(id) {
+        // Agregar código para editar una tarea (por ejemplo, abrir un formulario de edición)
+        alert('Editar tarea con ID: ' + id);
+    }
+
+    function eliminarTarea(id) {
+        // Agregar código para eliminar una tarea (por ejemplo, mostrar un mensaje de confirmación)
+        var confirmar = confirm('¿Estás seguro de que deseas eliminar la tarea con ID ' + id + '?');
+        if (confirmar) {
+            // Realizar la eliminación de la tarea aquí (puede usar AJAX para comunicarse con el servidor)
+            alert('Tarea eliminada con éxito');
+        }
+    }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

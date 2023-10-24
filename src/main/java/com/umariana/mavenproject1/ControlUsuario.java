@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 
 
@@ -47,7 +48,7 @@ public class ControlUsuario {
         escribir.close();
     }
 
-    public static void cargarArchivo(ServletContext context){
+    public static void cargarArchivo(ServletContext context ){
        
         String relativePath = "/data/usuarios.txt";
         String absPath = context.getRealPath(relativePath);
@@ -101,7 +102,21 @@ public class ControlUsuario {
        return null;
 }
     
-       
+      
+    
+    public static Usurios obtenerUsuarioActivo(String nombre, String cedula,ServletContext context) {
+        cargarArchivo(context); 
+
+        for (Usurios usuario : usuriosNuevo) {
+            if (usuario.getNombre_usuario().equals(nombre) && usuario.getContrasenia().equals(cedula)) {
+                return usuario;
+            }
+        }
+
+        return null; 
+    }
+
+    
         
 }
 

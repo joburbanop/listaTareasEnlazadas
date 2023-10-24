@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 
 
@@ -21,7 +22,8 @@ public class ControlTareas {
     *Atributos
     *--------------------------------------------*/
     private Tarea cabeza; 
-
+    
+    
     public ControlTareas() {
         cabeza = null;
     }
@@ -78,30 +80,27 @@ public class ControlTareas {
      * Metodo para guardar informacion en un arvhibo de texto
      * @param nombreArchivo 
      */
-    public void guardarTareasEnArchivo(ServletContext context) {
+    public static void guardarTareasEnArchivo(ServletContext context, List<Tarea> tareas, Usurios usuarioActivo) {
         
-        String relativePath = "/data/tareas.txt";
+        String relativePath = "/data/tareas_" + usuarioActivo.getNombre_usuario() + ".txt";
         String absPath = context.getRealPath(relativePath);
         
         File archivoGuardar = new File(absPath);
-        
+
         try {
-            
             BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoGuardar));
 
-            Tarea actual = cabeza;
-            while (actual != null) {
-                escritor.write("ID: " + actual.getId());
+            for (Tarea tarea : tareas) {
+                escritor.write("ID: " + tarea.getId());
                 escritor.newLine();
-                escritor.write("Título: " + actual.getTitulo());
+                escritor.write("Título: " + tarea.getTitulo());
                 escritor.newLine();
-                escritor.write("Descripción: " + actual.getDescripcion());
+                escritor.write("Descripción: " + tarea.getDescripcion());
                 escritor.newLine();
-                escritor.write("Fecha de vencimiento: " + actual.getFechaVencimiento());
+                escritor.write("Fecha de vencimiento: " + tarea.getFechaVencimiento());
                 escritor.newLine();
                 escritor.write("-----------------------");
                 escritor.newLine();
-                actual = actual.getSiguiente();
             }
 
             escritor.close();
@@ -110,35 +109,56 @@ public class ControlTareas {
         }
     }
 
+   
+
     /**
      * Metodo para cargar 
      * @param nombreArchivo 
      */
-    public  void cargarTareasDesdeArchivo(ServletContext context) {
-        
-        String relativePath = "/data/usuarios.txt";
+    public static List<Tarea> cargarTareasDesdeArchivo(ServletContext context, String nombreUsuario) {
+        List<Tarea> tareasUsuario = new ArrayList<>();
+        tareasUsuario.clear();
+        String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
         String absPath = context.getRealPath(relativePath);
         File archivoCargar = new File(absPath);
-        try {
-          
-            BufferedReader lector = new BufferedReader(new FileReader(archivoCargar));
+        boolean ve=archivoCargar.length() != 0;
+        System.out.println("desde cargata: "+relativePath+ " vetificando si tiene contenido: "+ve);
 
-            String linea;
-            while ((linea = lector.readLine()) != null) {
-                String id = linea.substring(linea.indexOf(":") + 1).trim();
-                String titulo = lector.readLine().substring(linea.indexOf(":") + 1).trim();
-                String descripcion = lector.readLine().substring(linea.indexOf(":") + 1).trim();
-                String fechaVencimiento = lector.readLine().substring(linea.indexOf(":") + 1).trim();
-                lector.readLine(); // Salta la línea de separación
+        if (archivoCargar.length() != 0) {
+            try (BufferedReader leyendo = new BufferedReader(new FileReader(archivoCargar))) {
+                String id = null;
+                String titulo = null;
+                String descripcion = null;
+                String fechaVencimiento = null;
 
-                Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fechaVencimiento);
-                agregarTarea(nuevaTarea);
+                String lineaPorLinea;
+                while ((lineaPorLinea = leyendo.readLine()) != null) {
+                    if (lineaPorLinea.startsWith("ID:")) {
+                        id = lineaPorLinea.substring(lineaPorLinea.indexOf(":") + 1).trim();
+                    } else if (lineaPorLinea.startsWith("Título:")) {
+                        titulo = lineaPorLinea.substring(lineaPorLinea.indexOf(":") + 1).trim();
+                    } else if (lineaPorLinea.startsWith("Descripción:")) {
+                        descripcion = lineaPorLinea.substring(lineaPorLinea.indexOf(":") + 1).trim();
+                    } else if (lineaPorLinea.startsWith("Fecha de vencimiento:")) {
+                        fechaVencimiento = lineaPorLinea.substring(lineaPorLinea.indexOf(":") + 1).trim();
+
+                        // Crea una nueva tarea y agrégala a la lista de tareas del usuario
+                        Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fechaVencimiento);
+                        System.out.println("se creo nueva tarea: "+nuevaTarea.getFechaVencimiento());
+                        tareasUsuario.add(nuevaTarea);
+
+                        // Restablece las variables para la siguiente tarea
+                        id = null;
+                        titulo = null;
+                        descripcion = null;
+                        fechaVencimiento = null;
+                    }
+                }
+            } catch (Exception e) {
+                e.getMessage();
             }
-
-            lector.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return tareasUsuario;
     }
 
     

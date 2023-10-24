@@ -1,10 +1,14 @@
 
 package servlet;
 
+import com.umariana.mavenproject1.ControlTareas;
 import com.umariana.mavenproject1.ControlUsuario;
+import static com.umariana.mavenproject1.ControlUsuario.cargarArchivo;
+import com.umariana.mavenproject1.Tarea;
 import com.umariana.mavenproject1.Usurios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.List;
 /**
  *
  * @author danie
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SvVerificar", urlPatterns = {"/SvVerificar"})
 public class SvVerificar extends HttpServlet {
 
+    public Usurios usuarioActivo;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,16 +48,24 @@ public class SvVerificar extends HttpServlet {
                 System.out.println("nombre: "+ nombre);
                 System.out.println("contraseña " + nombre);
                 String nombreUsuario = ControlUsuario.verificarUsuarioCreado(nombre, contrasenia, context);
+                List<Tarea>  tareasUsuarioActivo= new ArrayList<>();
                 
-                   if(nombreUsuario!=null){
+                Usurios usuarioActivo = ControlUsuario.obtenerUsuarioActivo( nombre, contrasenia, context);
+                
+                if(nombreUsuario!=null){
                        HttpSession session = request.getSession();
                        
                        session.setAttribute("nombre_usuario", nombreUsuario);
-                        // Otras atributos del usuario
+                      
                        session.setAttribute("cedula_usuario", contrasenia);
-                        // Agrega otros atributos que desees mantener
+                                       
+                        
+                        tareasUsuarioActivo=ControlTareas.cargarTareasDesdeArchivo(context, nombreUsuario);
+                        // Guarda las tareas en la sesión para que estén disponibles en tu JSP
+                        session.setAttribute("tareas", tareasUsuarioActivo);
 
-                       System.out.println("aqui estoy ");
+                       
+                      
                        request.setAttribute("nombre_usuario", nombreUsuario);
                     
                        request.getRequestDispatcher("/templates/listas.jsp").forward(request, response);

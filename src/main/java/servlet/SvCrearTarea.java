@@ -2,7 +2,9 @@
 package servlet;
 
 import com.umariana.mavenproject1.ControlTareas;
+import com.umariana.mavenproject1.ControlUsuario;
 import com.umariana.mavenproject1.Tarea;
+import com.umariana.mavenproject1.Usurios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -11,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
  *
@@ -37,22 +41,32 @@ public class SvCrearTarea extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        HttpSession session = request.getSession(false);
+        
+        System.out.println("ya vamos agregar Tara:"+ session);
+        
         ServletContext context= getServletContext();
+       
+        String nombreUsuario = (String) session.getAttribute("nombre_usuario");
+        String cedulaUsuario = (String) session.getAttribute("cedula_usuario");
+        
+        Usurios usuarioActivo= ControlUsuario.obtenerUsuarioActivo(nombreUsuario, cedulaUsuario, context);
+        System.out.println(usuarioActivo.getNombre_usuario());
+        // Crea una nueva tarea y asóciala al usuario
         String id = request.getParameter("id");
         String titulo = request.getParameter("titulo");
         String descripcion = request.getParameter("descripcion");
         String fecha = request.getParameter("fecha");
-        
+        session.setAttribute("tareas", usuarioActivo.obtenerTareas());
         Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fecha);
         
-        ControlTareas controlTareas = new ControlTareas();
         
-        controlTareas.agregarTarea(nuevaTarea);
-
-        controlTareas.guardarTareasEnArchivo(context);
-
-  
+                
+        usuarioActivo.agregarTarea(nuevaTarea);
+                
+               
+     
         response.sendRedirect("templates/listas.jsp");
     }
 
@@ -61,5 +75,9 @@ public class SvCrearTarea extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+    
+    
+ 
 
+    
 }

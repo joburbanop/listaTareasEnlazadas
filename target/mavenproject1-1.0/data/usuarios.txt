@@ -2,4 +2,7 @@
 nombre: admin
 cedula: 10863638979
 contraseña: 123
-
+contraseña: 789
+nombre: joburbanop
+cedula: 10863638979
+contraseña: 123
