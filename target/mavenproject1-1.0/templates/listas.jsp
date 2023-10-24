@@ -28,7 +28,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
- 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <section class="vh-100" style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
@@ -44,12 +44,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: black;">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class "nav-link" href="#" style="color: black;">Tareas</a>
-                        </li>
+                   
+                     
                     </ul>
                     <div class="navbar-text text-center" style="color: black;">
                         Hola, <%= nombreUsuario%>!
@@ -123,7 +119,8 @@
                                 <td><%= tarea.getFechaVencimiento() %></td>
                                 <td>
                                     <button class="btn btn-primary" onclick="editarTarea('<%= tarea.getId() %>')">Editar</button>
-                                    <button class="btn btn-danger" onclick="eliminarTarea('<%= tarea.getId() %>')">Eliminar</button>
+                                    <button class="btn btn-danger" onclick="eliminarTarea('<%= tarea.getTitulo()%>')">Eliminar</button>
+                                    
                                 </td>
                             </tr>
                             <%
@@ -152,13 +149,29 @@
         alert('Editar tarea con ID: ' + id);
     }
 
-    function eliminarTarea(id) {
+        function eliminarTarea(titulo){
         // Agregar código para eliminar una tarea (por ejemplo, mostrar un mensaje de confirmación)
-        var confirmar = confirm('¿Estás seguro de que deseas eliminar la tarea con ID ' + id + '?');
+        var confirmar = confirm('¿Estás seguro de que deseas eliminar la tarea con ID ' + titulo + '?');
+        
         if (confirmar) {
             // Realizar la eliminación de la tarea aquí (puede usar AJAX para comunicarse con el servidor)
-            alert('Tarea eliminada con éxito');
-        }
+                    console.log("holaxd");
+                    $.ajax({  
+                        
+                        url: 'SvEliminarTarea?titulo=',
+                        method: 'POST',
+                        
+                    success: function(){
+                        console.log("Aqui estoy");
+                        window.location.href= 'templates/listas.jsp';
+                    },
+                    error: function(){
+                        console.log("paila");
+                    }
+                });
+            alert('Tarea eliminada con exito');
+       
+        } 
     }
 </script>
 

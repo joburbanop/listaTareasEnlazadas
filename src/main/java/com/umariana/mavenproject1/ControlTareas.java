@@ -21,7 +21,7 @@ public class ControlTareas {
     /*-------------------------------------------------------------
     *Atributos
     *--------------------------------------------*/
-    private Tarea cabeza; 
+    public static Tarea cabeza; 
     
     
     public ControlTareas() {
@@ -54,12 +54,28 @@ public class ControlTareas {
     }
 
    
-    public void eliminarTareaPorTitulo(String titulo) {
+    public static void eliminarArchivo(ServletContext context, String nombreUsuario){
+        String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
+        String absPath = context.getRealPath(relativePath);
+        File archivoCargar = new File(absPath);
+        
+        try {
+            BufferedWriter escribir = new BufferedWriter(new FileWriter(archivoCargar));
+            escribir.write("");
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    public static void eliminarTareaPorTitulo(String titulo, ServletContext context, String nombreUsuario) {
+        cargarTareasDesdeArchivo(context, nombreUsuario);
+        
         if (cabeza == null) {
             return; 
         }
 
-        if (cabeza.getTitulo().equals(titulo)) {
+        if (cabeza.getTitulo().equals(titulo)){
             cabeza = cabeza.getSiguiente();
             return; 
         }

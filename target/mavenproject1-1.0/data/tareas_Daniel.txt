@@ -1,15 +1,10 @@
-ID: 1
-Título: kmldvflkjvzdflkj
-Descripción: kjfdkjdafkljdfa
-Fecha de vencimiento: 2023-10-19
+ID: 45
+TÃ­tulo: tarea1
+DescripciÃ³n: sdfmsdklc
+Fecha de vencimiento: 2023-10-07
 -----------------------
-ID: 1
-Título: twenty one pilots
-Descripción: 4645456
-Fecha de vencimiento: 2023-10-27
------------------------
-ID: 57464
-Título: jiofljsdkla
-Descripción: jdklsjflkajfÃ±asfkldja
-Fecha de vencimiento: 2023-10-05
+ID: 32131
+TÃ­tulo: Tarea2
+DescripciÃ³n: asdas
+Fecha de vencimiento: 2023-10-13
 -----------------------
