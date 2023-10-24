@@ -74,10 +74,13 @@ public class ControlTareas {
     }
     
     public static void eliminarTareaPorTitulo(String titulo, ServletContext context, String nombreUsuario) {
-       List<Tarea> cargar =cargarTareasDesdeArchivo(context, nombreUsuario);
-        cargar.remove(titulo);
-        eliminarArchivo(context,nombreUsuario);
-        cargarTareasDesdeArchivo(context, nombreUsuario);
+        //List<Tarea> cargar =cargarTareasDesdeArchivo(context, nombreUsuario);
+        
+        tareasUsuario.remove(titulo);
+        
+        //eliminarArchivo(context,nombreUsuario);
+    
+        //cargarTareasDesdeArchivo(context, nombreUsuario);
         
         if (cabeza == null) {
             return; 

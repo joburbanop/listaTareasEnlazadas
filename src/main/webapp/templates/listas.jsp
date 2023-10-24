@@ -160,16 +160,14 @@
                    
                     $.ajax({  
                         
-<<<<<<< HEAD
-                        url: 'SvEliminarTarea?titulo='+titulo,
-=======
-                        url: 'SvEliminarTarea?titulo=' + titulo,
->>>>>>> 72ac9d1e3c8f6844f4db5121dc6688441f229ae6
+
+                        url: '/mavenproject1/SvEliminarTarea?titulo=' + titulo,
+
                         method: 'POST',
                         
                     success: function(){
                         console.log("Aqui estoy");
-                        window.location.href= 'templates/listas.jsp';
+                        window.location.href= '/mavenproject1/templates/listas.jsp';
                     },
                     error: function(){
                         console.log("paila");

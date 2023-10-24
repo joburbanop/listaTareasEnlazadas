@@ -49,7 +49,7 @@ public class SvEliminarTarea extends HttpServlet {
         //ControlTareas.eliminarArchivo(context, nombreUsuario);
         ControlTareas.eliminarTareaPorTitulo(titulo, context, titulo);
         
-        //request.getRequestDispatcher("templates/listas.jsp").forward(request, response);
+        request.getRequestDispatcher("templates/listas.jsp").forward(request, response);
     }
 
     
