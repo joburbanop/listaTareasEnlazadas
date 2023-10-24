@@ -54,7 +54,7 @@
                     <div class="navbar-text text-center" style="color: black;">
                         Hola, <%= nombreUsuario%>!
                     </div>
-                    <a href="index.jsp" class="btn btn-warning" style="background-color: lightblue; border-color: lightblue; color: black;">Cerrar Sesión</a>
+                    <a href="/mavenproject1" class="btn btn-warning" style="background-color: lightblue; border-color: lightblue; color: black;">Cerrar Sesión</a>
                 </div>
             </div>
         </nav>

@@ -46,8 +46,9 @@ public class SvVerificar extends HttpServlet {
                 String nombre= request.getParameter("email");
                 String contrasenia = request.getParameter("contra");
                 System.out.println("nombre: "+ nombre);
-                System.out.println("contraseña " + nombre);
+                System.out.println("contraseña " + contrasenia);
                 String nombreUsuario = ControlUsuario.verificarUsuarioCreado(nombre, contrasenia, context);
+                System.out.println("nombre usuario "+nombreUsuario);
                 List<Tarea>  tareasUsuarioActivo= new ArrayList<>();
                 
                 Usurios usuarioActivo = ControlUsuario.obtenerUsuarioActivo( nombre, contrasenia, context);

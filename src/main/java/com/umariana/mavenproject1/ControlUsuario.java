@@ -73,7 +73,7 @@ public class ControlUsuario {
                         // Crea un nuevo usuario y agrégalo a la lista de usuarios
                         Usurios nuevoUsuario = new Usurios(cedula, nomreUsurio, contrasenia);
                         usuriosNuevo.add(nuevoUsuario);
-
+                        System.out.println("estamos desde cargar se cago nuevo usuairio"+ nuevoUsuario.getNombre_usuario());
                         // Restablece las variables para el siguiente usuario
                         nomreUsurio = null;
                         cedula = null;
@@ -92,6 +92,8 @@ public class ControlUsuario {
     public static String verificarUsuarioCreado(String nombre, String contrasenia,  ServletContext context) throws IOException {
        
         cargarArchivo(context);
+        System.out.println("desde verificar nombre: "+nombre);
+        System.out.println("desde verificar nombre: "+contrasenia);
         
        for (Usurios IUsuarios : usuriosNuevo) {
             if (IUsuarios.getNombre_usuario().equals(nombre) && IUsuarios.getContrasenia().equals(contrasenia)) {

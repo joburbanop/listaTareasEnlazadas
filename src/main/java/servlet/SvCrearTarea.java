@@ -64,7 +64,7 @@ public class SvCrearTarea extends HttpServlet {
         
                 
         usuarioActivo.agregarTarea(nuevaTarea);
-                
+        ControlTareas.guardarTareasEnArchivo(context, usuarioActivo.obtenerTareas(), usuarioActivo);
                
      
         response.sendRedirect("templates/listas.jsp");
