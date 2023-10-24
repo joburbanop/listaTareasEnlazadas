@@ -42,7 +42,7 @@ public class ControlTareas {
     }
 
  
-    public Tarea buscarTareaPorTitulo(String titulo) {
+    public static Tarea buscarTareaPorTitulo(String titulo) {
         Tarea actual = cabeza;
         while (actual != null) {
             if (actual.getTitulo().equals(titulo)) {
@@ -75,14 +75,18 @@ public class ControlTareas {
     
     public static void eliminarTareaPorTitulo(String titulo, ServletContext context, String nombreUsuario) {
         //List<Tarea> cargar =cargarTareasDesdeArchivo(context, nombreUsuario);
+        Tarea tareaEliminar= buscarTareaPorTitulo(titulo);
+        System.out.println("Tarea a eliminar "+tareaEliminar.getTitulo());
+        tareasUsuario.remove(tareaEliminar);
+        eliminarArchivo(context,nombreUsuario);
         
-        tareasUsuario.remove(titulo);
+        guardarTareasEnArchivo(context,tareasUsuario,nombreUsuario);
         
-        //eliminarArchivo(context,nombreUsuario);
+        
     
-        //cargarTareasDesdeArchivo(context, nombreUsuario);
+        cargarTareasDesdeArchivo(context, nombreUsuario);
         
-        if (cabeza == null) {
+        /*if (cabeza == null) {
             return; 
         }
 
@@ -98,7 +102,7 @@ public class ControlTareas {
                 return;
             }
             actual = actual.getSiguiente();
-        }
+        }*/
     }
 
   
@@ -107,9 +111,9 @@ public class ControlTareas {
      * Metodo para guardar informacion en un arvhibo de texto
      * @param nombreArchivo 
      */
-    public static void guardarTareasEnArchivo(ServletContext context, List<Tarea> tareas, Usurios usuarioActivo) {
+    public static void guardarTareasEnArchivo(ServletContext context, List<Tarea> tareas, String nombreUsuario) {
         
-        String relativePath = "/data/tareas_" + usuarioActivo.getNombre_usuario() + ".txt";
+        String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
         String absPath = context.getRealPath(relativePath);
         
         File archivoGuardar = new File(absPath);
