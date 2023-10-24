@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,10 +39,12 @@ public class SvEliminarTarea extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
-       
+        System.out.println("AQUI SI ESTAMOS");
+        HttpSession session = request.getSession(false);
+        String nombreUsuario = (String) session.getAttribute("nombre_usuario");
         String titulo = request.getParameter("titulo");
-        System.out.println("estamos eliminando" + titulo);
-        ControlTareas.eliminarArchivo(context, titulo);
+        System.out.println("estamos eliminando " + nombreUsuario);
+        //ControlTareas.eliminarArchivo(context, nombreUsuario);
         ControlTareas.eliminarTareaPorTitulo(titulo, context, titulo);
         
         //request.getRequestDispatcher("templates/listas.jsp").forward(request, response);
