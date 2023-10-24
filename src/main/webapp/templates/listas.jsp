@@ -79,11 +79,11 @@
                             <input type="text" name="descripcion" class="form-control">
                         </div>
 
-                        <div class "input-group mb-3">
+                        <div class ="input-group mb-3">
                             <label class="input-group-text" for="fecha">Fecha de vencimiento</label>
                             <input type="date" name="fecha" class="form-control">
                         </div>
-                        <input type="submit" value="Agregar tarea" ></input>
+                        <input type="submit" value="Agregar tarea" >
                     </form>
                     
                     
@@ -119,7 +119,7 @@
                                 <td><%= tarea.getFechaVencimiento() %></td>
                                 <td>
                                     <button class="btn btn-primary" onclick="editarTarea('<%= tarea.getId() %>')">Editar</button>
-                                    <button class="btn btn-danger" onclick="eliminarTarea('<%= tarea.getTitulo()%>')">Eliminar</button>
+                                    <button class="btn btn-danger" onclick="eliminarTarea('<%= tarea.getTitulo() %>')">Eliminar</button>
                                     
                                 </td>
                             </tr>
@@ -143,6 +143,8 @@
     </div>
 </section>
 <%@include file="/templates/footer.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     function editarTarea(id) {
         // Agregar código para editar una tarea (por ejemplo, abrir un formulario de edición)
@@ -158,7 +160,7 @@
                     console.log("holaxd");
                     $.ajax({  
                         
-                        url: 'SvEliminarTarea?titulo=',
+                        url: 'SvEliminarTarea?titulo='+titulo,
                         method: 'POST',
                         
                     success: function(){
@@ -175,7 +177,7 @@
     }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 
