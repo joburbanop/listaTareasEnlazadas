@@ -41,7 +41,7 @@ public class SvEliminarTarea extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
 
-        System.out.println("AQUI SI ESTAMOS");
+        //System.out.println("AQUI SI ESTAMOS");
         HttpSession session = request.getSession(false);
         String nombreUsuario = (String) session.getAttribute("nombre_usuario");
 

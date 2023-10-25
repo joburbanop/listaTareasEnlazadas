@@ -3,8 +3,3 @@ Título: mma
 Descripción: 123
 Fecha de vencimiento: 2023-10-12
 -----------------------
-ID: fdasfsaaaaaaaaaaaaaaa
-Título: dfsaaaaaaaaaaaaaaaaaa
-Descripción: fdasasasasasasasasasasasasas
-Fecha de vencimiento: 2023-11-10
------------------------

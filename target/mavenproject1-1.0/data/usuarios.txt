@@ -8,3 +8,6 @@ contraseña: 123
 nombre: Daniel
 cedula: 789
 contraseña: 456
+nombre: admin
+cedula: 10863638979
+contraseña: gfd

@@ -16,7 +16,10 @@
     <body>
 
             <%
-                String relativePath = getServletContext().getRealPath("/data");
+                /*
+                * Garantisar que /data exista y que el archivo exista
+                */
+               String relativePath = getServletContext().getRealPath("/data");
                String archivoGuardar = "usuarios.txt";
                
                File data = new File(relativePath);
@@ -33,9 +36,9 @@
                     <div class="form-container sign-up">
                         <form  action="SvRegistrar" method="POST">
                             <h1>Crea una cuenta</h1>
-                            <input type="text" name="usuario" placeholder="Usuario">
-                            <input type="text" name="cedula" placeholder="Cedula">
-                            <input type="password" name="contrasenia" placeholder="Contraseña">
+                            <input type="text" name="usuario" placeholder="Usuario" required>
+                            <input type="text" name="cedula" placeholder="Cedula" pattern="[0-9]+" title="Solo números" required>
+                            <input type="password" name="contrasenia" placeholder="Contraseña" required >
                             <input type="submit" value="Crear cuenta">
                         </form>
                     </div>
@@ -44,8 +47,9 @@
                     <div class="form-container sign-in">
                         <form action="SvVerificar" method="POST">
                             <h1>Ingresa</h1>
-                            <input type="text" name="email" placeholder="Usuario">
-                            <input type="password" name="contra" placeholder="Contraseña">
+                            <input id="cedula" name="email" type="text" class="form-control space-narrow" placeholder="Usuario" required  >
+                            
+                            <input type="password" name="contra" placeholder="Contraseña" required>
                             <input type="submit" value="Ingresar">
                         </form>
                     </div>
