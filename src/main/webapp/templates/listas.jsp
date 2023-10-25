@@ -27,44 +27,67 @@
 %>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="/mavenproject1/styleMain.css">
     </head>
     <body>
-        <section class="vh-100" style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
-            <div class="container p-4"> <!-- clase contenedora -->
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
-                    <div class="container-fluid">
-                        <a class="navbar-brand d-flex align-items-center" href="#" style="color: black;">
-                            <i class="fas fa-cubes fa-2x me-3" style="color: lightblue;"></i>
-                            <span style="line-height: 1.2;"></span>
+     
+        <div class="wrapper"> <!-- clase contenedora -->
+            <aside id="sidebar">
+            <div class="h-100">
+
+                <div class="sidebar-logo">
+                    <a href="#">
+                        <i class="fa-solid fa-door-open"></i>
+                        Bienvenido <%= nombreUsuario%>
+                    </a>
+                </div>
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        CRUD
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" id="mostrarFormulario">
+                            <i class="fa-solid fa-plus "></i>
+                            Insertar Tarea
                         </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                            <ul class="navbar-nav">
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link" id = "mostrarTarea">
+                            <i class="fa-solid fa-eye"></i>
+                            Visualizar Tareas
+                        </a>
+                    </li>
+                  
+                    <li class="sidebar-item1">
+                        <a href="/mavenproject1" class="sidebar-link-2" id =>
+                            <i class="fa-solid fa-door-closed"></i>
+                            Cerrar sesion
+                        </a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+            
+        </aside>
 
-
-                            </ul>
-                            <div class="navbar-text text-center" style="color: black;">
-                                Hola, <%= nombreUsuario%>!
-                            </div>
-                            <a href="/mavenproject1" class="btn btn-warning" style="background-color: lightblue; border-color: lightblue; color: black;">Cerrar Sesión</a>
-                        </div>
-                    </div>
-                </nav>
-
-
-                <h1 class="text-center mt-4 mb-4" style="color: black;">Tareas</h1>
+            <div class="container-fluid"> 
                 <div class="row">
-                    <div class="col-md-4 d-flex justify-content-center align-items-center"> <!-- Agrega las clases d-flex, justify-content-center y align-items-center -->
-                        <div class="card card-body text-center" style="background-color: white; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
-                            <h4 class="text-center" style="color: black;">Agrega tareas</h4>
+                    <div class="col-lg-12 d-flex justify-content-center align-items-center" style='margin-top: 100px;'> <!-- Agrega las clases d-flex, justify-content-center y align-items-center -->
+                        
+                           
 
                             <%-- formulario para agregar tareas --%>
-                            <form action="/mavenproject1/SvCrearTarea" method="post">
-
+                            <form id="formularioTarea" action="/mavenproject1/SvCrearTarea" method="post" style="display: none;">
+                               <div class="card card-body text-center" style="background-color: white; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
+                                <h4 class="text-center" style="color: black;">Agrega tareas</h4>
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="nombre">Id</label>
                                     <input type="text" name="id" class="form-control"  required>
@@ -87,11 +110,11 @@
                                 <!-- Abrir modal de opciones -->
                                 <input  type="submit" value="Agregar tarea"> 
 
-
+                               </div>
                             </form>
 
 
-                        </div>
+                        
                     </div>
 
                     <!-- Modal para seleccionar la posición de la tarea -->
@@ -137,9 +160,11 @@
                     </div>
 
                     <%-- tabla para visualizar las tareas agregadas --%>
-                    <div class="col-md-8">
+                    <div class="col-lg-12 d-flex justify-content-center align-items-center">
                         <div>
-                            <table class="table table-striped">
+                            <table id="tablaTarea" class="table table-striped" style="display:none;">
+                            
+
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -191,7 +216,7 @@
 
                 </div>
             </div>
-        </section>
+        
 
         <section>
 
@@ -239,9 +264,36 @@
                 </div>
             </div>
 
-        </section>                        
-
-
+        </section>                
+                        
+                                
+                                
+        <%--Script para mostrar formulario tarea --%>                     
+        <script>
+                document.getElementById("mostrarFormulario").addEventListener("click", function() {
+                var formulario = document.getElementById("formularioTarea");
+                var tabla = document.getElementById("tablaTarea");
+            if (formulario.style.display === "none" || formulario.style.display === "") {
+                formulario.style.display = "block";
+                tabla.style.display = "none";
+                document.getElementById("formularioActual").value = "tarea"; // Agregar esta línea
+            } else {
+                formulario.style.display = "none";
+            }
+        });
+                <%--Script para mostrar tabla tarea --%>  
+                document.getElementById("mostrarTarea").addEventListener("click", function() {
+                var formulario = document.getElementById("tablaTarea");
+                var tarea = document.getElementById("formularioTarea");
+            if (formulario.style.display === "none" || formulario.style.display === "") {
+                formulario.style.display = "block";
+                tarea.style.display = "none";
+                document.getElementById("formularioActual").value = "tabla"; // Agregar esta línea
+            } else {
+                formulario.style.display = "none";
+            }
+       });
+        </script>
         <%@include file="/templates/footer.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -2,3 +2,6 @@
 nombre: admin
 cedula: 10863638979
 contraseña: 123
+nombre: Daniel
+cedula: 1085346286
+contraseÃ±a: 1234
