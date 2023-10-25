@@ -5,6 +5,7 @@
 package servlet;
 
 import com.umariana.mavenproject1.ControlTareas;
+import com.umariana.mavenproject1.Tarea;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -45,9 +46,15 @@ public class SvEliminarTarea extends HttpServlet {
         String nombreUsuario = (String) session.getAttribute("nombre_usuario");
 
         String titulo = request.getParameter("titulo");
-        System.out.println("estamos eliminando " + nombreUsuario);
-        //ControlTareas.eliminarArchivo(context, nombreUsuario);
-        ControlTareas.eliminarTareaPorTitulo(titulo, context, titulo);
+        
+        Tarea aEliminar = ControlTareas.buscarTareaPorTitulo(titulo);
+        
+        
+        System.out.println("estamos eliminando " + aEliminar.getTitulo());
+        
+        ControlTareas.eliminarTarea(aEliminar, context, nombreUsuario);
+        
+        session.setAttribute("tareas", ControlTareas.obtenerTodasLasTareas());
         
         request.getRequestDispatcher("templates/listas.jsp").forward(request, response);
     }

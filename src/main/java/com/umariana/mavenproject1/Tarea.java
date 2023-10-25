@@ -80,11 +80,4 @@ public class Tarea {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-  
-
-
-    
-   
-   
-
 }

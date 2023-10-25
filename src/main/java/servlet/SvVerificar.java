@@ -60,10 +60,11 @@ public class SvVerificar extends HttpServlet {
                       
                        session.setAttribute("cedula_usuario", contrasenia);
                                        
-                        
-                        tareasUsuarioActivo=ControlTareas.cargarTareasDesdeArchivo(context, nombreUsuario);
+                        ControlTareas.cargarTareasDesdeArchivo(context, nombreUsuario);
+                        //tareasUsuarioActivo=ControlTareas.cargarTareasDesdeArchivo(context, nombreUsuario);
                         // Guarda las tareas en la sesión para que estén disponibles en tu JSP
-                        session.setAttribute("tareas", tareasUsuarioActivo);
+                        System.out.println("control ver tareas: "+ControlTareas.obtenerTodasLasTareas());
+                        session.setAttribute("tareas", ControlTareas.obtenerTodasLasTareas());
 
                        
                       

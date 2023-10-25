@@ -8,6 +8,3 @@ contraseña: 123
 nombre: Daniel
 cedula: 789
 contraseña: 456
-nombre: Daniel
-cedula: 789
-contraseÃ±a: 456

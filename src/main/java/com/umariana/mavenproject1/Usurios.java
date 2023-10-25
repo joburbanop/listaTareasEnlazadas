@@ -12,9 +12,9 @@ public class Usurios {
      * Atributos 
      *-------------------------------------------------*/
     
-     private String cedula;
-     private String nombre_usuario;
-     private String contrasenia;
+    private String cedula;
+    private String nombre_usuario;
+    private String contrasenia;
     private ArrayList<Tarea> tareas;
 
  

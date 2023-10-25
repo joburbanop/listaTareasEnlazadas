@@ -52,21 +52,31 @@ public class SvCrearTarea extends HttpServlet {
         String cedulaUsuario = (String) session.getAttribute("cedula_usuario");
         
         Usurios usuarioActivo= ControlUsuario.obtenerUsuarioActivo(nombreUsuario, cedulaUsuario, context);
+        
         System.out.println(usuarioActivo.getNombre_usuario());
+        
         // Crea una nueva tarea y asóciala al usuario
+        
         String id = request.getParameter("id");
+        
         String titulo = request.getParameter("titulo");
+        
         String descripcion = request.getParameter("descripcion");
+        
         String fecha = request.getParameter("fecha");
-        session.setAttribute("tareas", usuarioActivo.obtenerTareas());
+        
         Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fecha);
         
-        
-                
         usuarioActivo.agregarTarea(nuevaTarea);
-        ControlTareas.guardarTareasEnArchivo(context, usuarioActivo.obtenerTareas(), usuarioActivo.getNombre_usuario());
-               
-     
+        
+        ControlTareas.agregarTarea(nuevaTarea);
+        
+        ControlTareas.guardarTareasEnArchivo(context, nombreUsuario);
+        
+        session.setAttribute("tareas", ControlTareas.obtenerTodasLasTareas());
+                
+        
+        
         response.sendRedirect("templates/listas.jsp");
     }
 

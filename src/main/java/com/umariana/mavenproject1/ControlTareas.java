@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.umariana.mavenproject1;
 
 import java.io.BufferedReader;
@@ -22,14 +19,18 @@ public class ControlTareas {
     *Atributos
     *--------------------------------------------*/
     public static Tarea cabeza; 
-    private static List<Tarea> tareasUsuario = new ArrayList<>();
     
+    
+    
+    /*-------------------------------------------------------
+    * Metodos
+    *---------------------------------------------*/
     public ControlTareas() {
         cabeza = null;
     }
 
     
-    public void agregarTarea(Tarea nuevaTarea) {
+    public static void agregarTarea(Tarea nuevaTarea) {
         if (cabeza == null) {
             cabeza = nuevaTarea;
         } else {
@@ -43,6 +44,8 @@ public class ControlTareas {
 
  
     public static Tarea buscarTareaPorTitulo(String titulo) {
+        
+        
         Tarea actual = cabeza;
         while (actual != null) {
             if (actual.getTitulo().equals(titulo)) {
@@ -73,72 +76,70 @@ public class ControlTareas {
     
     }
     
-    public static void eliminarTareaPorTitulo(String titulo, ServletContext context, String nombreUsuario) {
-        //List<Tarea> cargar =cargarTareasDesdeArchivo(context, nombreUsuario);
-        Tarea tareaEliminar= buscarTareaPorTitulo(titulo);
-        System.out.println("Tarea a eliminar "+tareaEliminar.getTitulo());
-        tareasUsuario.remove(tareaEliminar);
-        eliminarArchivo(context,nombreUsuario);
+    public static void eliminarTarea(Tarea tareaAEliminar, ServletContext context, String nombreUsuario) {
         
-        guardarTareasEnArchivo(context,tareasUsuario,nombreUsuario);
-        
-        
-    
-        cargarTareasDesdeArchivo(context, nombreUsuario);
-        
-        /*if (cabeza == null) {
-            return; 
+
+        if (cabeza == null) {
+            return; // La lista está vacía, no hay nada que eliminar.
         }
 
-        if (cabeza.getTitulo().equals(titulo)){
+        if (cabeza == tareaAEliminar) {
             cabeza = cabeza.getSiguiente();
-            return; 
+            guardarTareasEnArchivo(context, nombreUsuario);
+            return;
         }
 
         Tarea actual = cabeza;
         while (actual.getSiguiente() != null) {
-            if (actual.getSiguiente().getTitulo().equals(titulo)) {
-                actual.setSiguiente(actual.getSiguiente().getSiguiente());
+            if (actual.getSiguiente() == tareaAEliminar) {
+                actual.setSiguiente(tareaAEliminar.getSiguiente());
+                guardarTareasEnArchivo(context, nombreUsuario);
                 return;
             }
             actual = actual.getSiguiente();
-        }*/
+        }
     }
 
-  
+
+    public static void limpiarListaDeTareas() {
+          cabeza = null; 
+    }
+
     
     /**
      * Metodo para guardar informacion en un arvhibo de texto
      * @param nombreArchivo 
      */
-    public static void guardarTareasEnArchivo(ServletContext context, List<Tarea> tareas, String nombreUsuario) {
-        
-        String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
-        String absPath = context.getRealPath(relativePath);
-        
-        File archivoGuardar = new File(absPath);
+    public static void guardarTareasEnArchivo(ServletContext context, String nombreUsuario) {
+       String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
+       String absPath = context.getRealPath(relativePath);
+       File archivoGuardar = new File(absPath);
 
-        try {
-            BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoGuardar));
+       try {
+           BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoGuardar));
 
-            for (Tarea tarea : tareas) {
-                escritor.write("ID: " + tarea.getId());
-                escritor.newLine();
-                escritor.write("Título: " + tarea.getTitulo());
-                escritor.newLine();
-                escritor.write("Descripción: " + tarea.getDescripcion());
-                escritor.newLine();
-                escritor.write("Fecha de vencimiento: " + tarea.getFechaVencimiento());
-                escritor.newLine();
-                escritor.write("-----------------------");
-                escritor.newLine();
-            }
+           Tarea actual = cabeza; // Usamos la cabeza de la lista enlazada
+           while (actual != null) {
+               escritor.write("ID: " + actual.getId());
+               escritor.newLine();
+               escritor.write("Título: " + actual.getTitulo());
+               escritor.newLine();
+               escritor.write("Descripción: " + actual.getDescripcion());
+               escritor.newLine();
+               escritor.write("Fecha de vencimiento: " + actual.getFechaVencimiento());
+               escritor.newLine();
+               escritor.write("-----------------------");
+               escritor.newLine();
 
-            escritor.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+               actual = actual.getSiguiente(); // Avanzamos al siguiente nodo en la lista
+           }
+
+           escritor.close();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
+
 
    
 
@@ -146,9 +147,9 @@ public class ControlTareas {
      * Metodo para cargar 
      * @param nombreArchivo 
      */
-    public static List<Tarea> cargarTareasDesdeArchivo(ServletContext context, String nombreUsuario) {
+    public static void cargarTareasDesdeArchivo(ServletContext context, String nombreUsuario) {
         
-        tareasUsuario.clear();
+        limpiarListaDeTareas();
         String relativePath = "/data/tareas_" + nombreUsuario + ".txt";
         String absPath = context.getRealPath(relativePath);
         File archivoCargar = new File(absPath);
@@ -176,7 +177,7 @@ public class ControlTareas {
                         // Crea una nueva tarea y agrégala a la lista de tareas del usuario
                         Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fechaVencimiento);
                         System.out.println("se creo nueva tarea: "+nuevaTarea.getFechaVencimiento());
-                        tareasUsuario.add(nuevaTarea);
+                        agregarTarea(nuevaTarea);
 
                         // Restablece las variables para la siguiente tarea
                         id = null;
@@ -189,8 +190,21 @@ public class ControlTareas {
                 e.getMessage();
             }
         }
-        return tareasUsuario;
+       
     }
+    
+    public static List<Tarea> obtenerTodasLasTareas() {
+    List<Tarea> listaTodasLasTareas = new ArrayList<>();
+    Tarea actual = cabeza; // Comenzamos desde la cabeza de la lista enlazada
+    
+    while (actual != null) {
+        listaTodasLasTareas.add(actual);
+        actual = actual.getSiguiente(); // Avanzamos al siguiente nodo en la lista
+    }
+
+    return listaTodasLasTareas;
+}
+
 
     
 }

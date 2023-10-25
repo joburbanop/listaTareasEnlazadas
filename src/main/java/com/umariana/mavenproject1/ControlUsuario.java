@@ -92,12 +92,12 @@ public class ControlUsuario {
     public static String verificarUsuarioCreado(String nombre, String contrasenia,  ServletContext context) throws IOException {
        
         cargarArchivo(context);
-        System.out.println("desde verificar nombre: "+nombre);
-        System.out.println("desde verificar nombre: "+contrasenia);
+        //System.out.println("desde verificar nombre: "+nombre);
+        //System.out.println("desde verificar nombre: "+contrasenia);
         
        for (Usurios IUsuarios : usuriosNuevo) {
             if (IUsuarios.getNombre_usuario().equals(nombre) && IUsuarios.getContrasenia().equals(contrasenia)) {
-                System.out.println("Se verifico aqui" + IUsuarios.getNombre_usuario());
+                //System.out.println("Se verifico aqui" + IUsuarios.getNombre_usuario());
                 return IUsuarios.getNombre_usuario();
             }
        }
@@ -105,7 +105,13 @@ public class ControlUsuario {
 }
     
       
-    
+    /**
+     * Retorna un objeto ce tipo usuario
+     * @param nombre
+     * @param cedula
+     * @param context
+     * @return 
+     */
     public static Usurios obtenerUsuarioActivo(String nombre, String cedula,ServletContext context) {
         cargarArchivo(context); 
 
