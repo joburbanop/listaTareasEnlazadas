@@ -65,14 +65,17 @@ public class SvCrearTarea extends HttpServlet {
         
         String fecha = request.getParameter("fecha");
         
-        Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fecha);
+        if(!ControlTareas.existeTareaConId(id)){
+            Tarea nuevaTarea = new Tarea(id, titulo, descripcion, fecha);
         
-        usuarioActivo.agregarTarea(nuevaTarea);
+            usuarioActivo.agregarTarea(nuevaTarea);
+
+            ControlTareas.agregarTarea(nuevaTarea);
+
+            ControlTareas.guardarTareasEnArchivo(context, nombreUsuario);
+        }
         
-        ControlTareas.agregarTarea(nuevaTarea);
-        
-        ControlTareas.guardarTareasEnArchivo(context, nombreUsuario);
-        
+     
         session.setAttribute("tareas", ControlTareas.obtenerTodasLasTareas());
                 
         

@@ -159,7 +159,7 @@
                                             for (Tarea tarea : tareas) {
                                     %>
                                     <tr>
-                                        <td><%= contador%></td>
+                                        <td><%= tarea.getId() %></td>
                                         <td><%= tarea.getTitulo()%></td>
                                         <td><%= tarea.getDescripcion()%></td>
                                         <td><%= tarea.getFechaVencimiento()%></td>
@@ -207,7 +207,7 @@
                             <form action="/mavenproject1/SvEditar"  method="POST"  >
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editModalLabel">Editar Información de la Tarea de <input type="text" class="form-control" id="id" name="id" readonly> </h5>
+                                    <h5 class="modal-title" id="editModalLabel">Editar Información de la Tarea de con ID: <input type="text" class="form-control" id="id" name="id"  readonly style="border: none; background: none;" readonly> </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                 </div>
 

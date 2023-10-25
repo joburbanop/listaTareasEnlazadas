@@ -192,33 +192,45 @@ public class ControlTareas {
     }
 
     public static void editarTarea(Tarea tarea, String nuevoTitulo, String nuevaDescripcion, String nuevaFechaVencimiento, ServletContext context, String nombreUsuario) {
-        
+
         if (tarea == null) {
-            
+
             return;
         }
 
-     
         tarea.setTitulo(nuevoTitulo);
         tarea.setDescripcion(nuevaDescripcion);
         tarea.setFechaVencimiento(nuevaFechaVencimiento);
 
-        
         guardarTareasEnArchivo(context, nombreUsuario);
     }
 
     public static Tarea buscarTareaPorId(String id) {
-    Tarea actual = cabeza;
-    System.out.println("desde buscar por id: "+id);
-    while (actual != null) {
-        
-        if (actual.getId().equals(id)) {
-            return actual; 
+        Tarea actual = cabeza;
+        System.out.println("desde buscar por id: " + id);
+        while (actual != null) {
+
+            if (actual.getId().equals(id)) {
+                return actual;
+            }
+            actual = actual.getSiguiente();
         }
-        actual = actual.getSiguiente(); 
+
+        return null;
     }
 
-    return null; 
-}
+    public static boolean existeTareaConId(String id) {
+        Tarea actual = cabeza; 
+
+        while (actual != null) {
+           
+            if (actual.getId().equals(id)) {
+                return true; 
+            }
+            actual = actual.getSiguiente(); 
+        }
+
+        return false; // No se encontró ninguna tarea con ese ID
+    }
 
 }
