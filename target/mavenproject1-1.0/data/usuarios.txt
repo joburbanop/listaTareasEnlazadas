@@ -5,3 +5,9 @@ contraseña: 123
 nombre: Daniel
 cedula: 1085346286
 contraseÃ±a: 1234
+nombre: Daniel
+cedula: 10863638979
+contraseña: 1234
+nombre: Admin
+cedula: 10863638979
+contraseña: 123

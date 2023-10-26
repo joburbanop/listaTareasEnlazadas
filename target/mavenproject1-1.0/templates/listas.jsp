@@ -38,35 +38,35 @@
     <body>
      
         <div class="wrapper"> <!-- clase contenedora -->
-            <aside id="sidebar">
+            <aside id="sidebar" style="height: 100vh;">
             <div class="h-100">
 
                 <div class="sidebar-logo">
-                    <a href="#">
+                    <a href="#"style="color: white">
                         <i class="fa-solid fa-door-open"></i>
                         Bienvenido <%= nombreUsuario%>
                     </a>
                 </div>
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
-                    <li class="sidebar-header">
+                    <li class="sidebar-header"style="color: white">
                         CRUD
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" id="mostrarFormulario">
+                        <a class="sidebar-link" id="mostrarFormulario"style="color: white">
                             <i class="fa-solid fa-plus "></i>
                             Insertar Tarea
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link" id = "mostrarTarea">
+                        <a href="#" class="sidebar-link" id = "mostrarTarea"style="color: white">
                             <i class="fa-solid fa-eye"></i>
                             Visualizar Tareas
                         </a>
                     </li>
                   
-                    <li class="sidebar-item1">
-                        <a href="/mavenproject1" class="sidebar-link-2" id =>
+                    <li class="sidebar-item-1">
+                        <a href="/mavenproject1" class="sidebar-link-2" style="color: white">
                             <i class="fa-solid fa-door-closed"></i>
                             Cerrar sesion
                         </a>
@@ -216,14 +216,14 @@
 
                 </div>
             </div>
-        
-
+        </div>
+                                
         <section>
 
 
             <!-- Modal para editar información de la tarea -->
             <div class="modal fade" id="editModalConfirm" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-dialog d-flex justify-content-start modal-dialog-centered modal-lg" style="margin-left: auto;">
                     <div class="modal-content custom-modal">
 
                         <div class="modal-body">
@@ -256,10 +256,7 @@
 
 
                         </div>
-                        <div class="modal-footer">
-                            <input  type="submit" class="btn btn-secondary" style="margin-right: 10px;" value="Guardar cambios"> 
-
-                        </div>
+     
                     </div>
                 </div>
             </div>

@@ -1,0 +1,26 @@
+-classpath
+'C:/Users/jonathan/.m2/repository/org/glassfish/jersey/containers/jersey-container-servlet/2.34/jersey-container-servlet-2.34.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/containers/jersey-container-servlet-core/2.34/jersey-container-servlet-core-2.34.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/core/jersey-common/2.34/jersey-common-2.34.jar;C:/Users/jonathan/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar;C:/Users/jonathan/.m2/repository/org/glassfish/hk2/osgi-resource-locator/1.0.3/osgi-resource-locator-1.0.3.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/core/jersey-server/2.34/jersey-server-2.34.jar;C:/Users/jonathan/.m2/repository/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar;C:/Users/jonathan/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/2.1.6/jakarta.ws.rs-api-2.1.6.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/core/jersey-client/2.34/jersey-client-2.34.jar;C:/Users/jonathan/.m2/repository/org/glassfish/hk2/external/jakarta.inject/2.6.1/jakarta.inject-2.6.1.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/media/jersey-media-moxy/2.34/jersey-media-moxy-2.34.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jersey/ext/jersey-entity-filtering/2.34/jersey-entity-filtering-2.34.jar;C:/Users/jonathan/.m2/repository/jakarta/json/jakarta.json-api/1.1.6/jakarta.json-api-1.1.6.jar;C:/Users/jonathan/.m2/repository/org/glassfish/jakarta.json/1.1.6/jakarta.json-1.1.6.jar;C:/Users/jonathan/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.moxy/2.7.6/org.eclipse.persistence.moxy-2.7.6.jar;C:/Users/jonathan/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.core/2.7.6/org.eclipse.persistence.core-2.7.6.jar;C:/Users/jonathan/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.asm/2.7.6/org.eclipse.persistence.asm-2.7.6.jar;C:/Users/jonathan/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.3/jakarta.xml.bind-api-2.3.3.jar;C:/Users/jonathan/.m2/repository/jakarta/activation/jakarta.activation-api/1.2.2/jakarta.activation-api-1.2.2.jar;C:/Users/jonathan/.m2/repository/javax/javaee-api/8.0/javaee-api-8.0.jar;C:/Users/jonathan/.m2/repository/com/sun/mail/javax.mail/1.6.0/javax.mail-1.6.0.jar;C:/Users/jonathan/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'1.8'
+-sourcepath
+'E:/TareaListas/listaTareasEnlazadas/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'E:/TareaListas/listaTareasEnlazadas/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'listaEnlazada 1.0 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'E:/TareaListas/listaTareasEnlazadas/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'listaEnlazada 1.0 API'

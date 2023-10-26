@@ -42,11 +42,12 @@ padding: 0; /* Eliminar espaciado de lista */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #eef7ff;
-    background: linear-gradient(to right, #9ccce7, #90a1d1);
+    background-color: #512da8;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
+    height: 100vh;
 }
 
 h3 {
@@ -72,6 +73,7 @@ li {
     align-items: stretch;
     display: flex;
     width: 100%;
+    
 }
 
 #sidebar {
@@ -80,6 +82,7 @@ li {
     transition: all 0.35s ease-in-out;
     box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
     z-index: 1111;
+    color:white;
 
 }
 /* Sidebar collapse */
@@ -148,8 +151,8 @@ a.sidebar-link {
 .sidebar-link-2{
     padding: 100px;
     color: #2c4763;
-     position: relative; 
-    bottom: -250px; 
+    position: absolute; 
+    bottom: 0px; 
     left: -95px;
     display: flex;
     font-size: 1rem;
